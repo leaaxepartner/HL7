@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Aranyasen\HL7;
+namespace Axeesante\HL7;
 
 
 class Response

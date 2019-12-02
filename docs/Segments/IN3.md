@@ -1,4 +1,4 @@
-# Aranyasen\HL7\Segments\IN3  
+# Axeesante\HL7\Segments\IN3  
 
 IN3 segment class
 Ref: http://hl7-definition.caristix.com:9010/Default.aspx?version=HL7+v2.5.1&segment=ORC
@@ -7,7 +7,7 @@ Ref: http://hl7-definition.caristix.com:9010/Default.aspx?version=HL7+v2.5.1&seg
 
 ## Extend:
 
-Aranyasen\HL7\Segment
+Axeesante\HL7\Segment
 
 ## Methods
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Aranyasen\Exceptions;
+namespace Axeesante\Exceptions;
 
 use Exception;
 

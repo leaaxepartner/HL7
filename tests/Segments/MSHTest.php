@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Aranyasen\HL7\Segments\Tests;
+namespace Axeesante\HL7\Segments\Tests;
 
-use Aranyasen\HL7\Segments\MSH;
-use Aranyasen\HL7\Tests\TestCase;
+use Axeesante\HL7\Segments\MSH;
+use Axeesante\HL7\Tests\TestCase;
 
 class MSHTest extends TestCase
 {

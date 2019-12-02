@@ -1,13 +1,13 @@
 <?php
 declare(strict_types=1);
 
-namespace Aranyasen\HL7\Tests;
+namespace Axeesante\HL7\Tests;
 
-use Aranyasen\Exceptions\HL7Exception;
-use Aranyasen\HL7\Message;
-use Aranyasen\HL7\Segment;
-use Aranyasen\HL7\Segments\MSH;
-use Aranyasen\HL7\Segments\PID;
+use Axeesante\Exceptions\HL7Exception;
+use Axeesante\HL7\Message;
+use Axeesante\HL7\Segment;
+use Axeesante\HL7\Segments\MSH;
+use Axeesante\HL7\Segments\PID;
 use InvalidArgumentException;
 use DMS\PHPUnitExtensions\ArraySubset\Assert;
 
@@ -266,7 +266,7 @@ class MessageTest extends TestCase
      */
     public function an_exception_will_be_throw_in_invalid_string(): void
     {
-        $this->expectException(\Aranyasen\Exceptions\HL7Exception::class);
+        $this->expectException(\Axeesante\Exceptions\HL7Exception::class);
         $this->expectExceptionMessage('Not a valid message: invalid control segment');
         $msg = new Message("I'm an invalid message");
     }

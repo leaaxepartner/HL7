@@ -1,8 +1,8 @@
 <?php
 
-namespace Aranyasen\HL7;
+namespace Axeesante\HL7;
 
-use Aranyasen\Exceptions\HL7Exception;
+use Axeesante\Exceptions\HL7Exception;
 use InvalidArgumentException;
 
 /**
@@ -138,7 +138,7 @@ class Message
                 $seg = null;
 
                 // If a class exists for the segment under segments/, (e.g., MSH)
-                $className = "Aranyasen\\HL7\\Segments\\$name";
+                $className = "Axeesante\\HL7\\Segments\\$name";
                 if (class_exists($className)) {
                     if ($name === 'MSH') {
                         array_unshift($fields, $this->fieldSeparator); # First field for MSH is '|'
@@ -436,7 +436,7 @@ class Message
 
         // Go through each available segment class and reset its ID
         foreach ($segments as $file) { // ['OBR', 'PID', 'OBX', 'IN1'...]
-            $className = "Aranyasen\\HL7\\Segments\\".pathinfo($file, PATHINFO_FILENAME);
+            $className = "Axeesante\\HL7\\Segments\\".pathinfo($file, PATHINFO_FILENAME);
             if (class_exists($className) && method_exists($className, 'resetIndex')) {
                 $className::resetIndex();
             }

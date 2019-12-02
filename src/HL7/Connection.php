@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Aranyasen\HL7;
+namespace Axeesante\HL7;
 
-use Aranyasen\Exceptions\HL7ConnectionException;
+use Axeesante\Exceptions\HL7ConnectionException;
 use Exception;
 
 /**
