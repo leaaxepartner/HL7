@@ -3,6 +3,7 @@
 namespace Axeesante\HL7;
 
 use Axeesante\Exceptions\HL7Exception;
+use Axeesante\HL7\MessageHelpersTrait;
 use InvalidArgumentException;
 
 /**
@@ -18,8 +19,6 @@ use InvalidArgumentException;
  */
 class Message
 {
-    use MessageHelpersTrait;
-
     /**
      * Array holding all segments of this message.
      */
