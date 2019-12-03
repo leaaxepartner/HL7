@@ -9,7 +9,7 @@
     },
     "autoload": {
         "psr-0": {
-            "Axeesante": "src/"
+            "Axeesante\\": "src/"
         }
     },
     "require-dev": {
