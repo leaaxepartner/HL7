@@ -1,4 +1,4 @@
-# Aranyasen\HL7\Segments\MSH  
+# Axeesante\HL7\Segments\MSH  
 
 MSH (message header) segment class
 
@@ -22,7 +22,7 @@ Reference: https://corepointhealth.com/resource-center/hl7-resources/hl7-msh-mes
 
 ## Extend:
 
-Aranyasen\HL7\Segment
+Axeesante\HL7\Segment
 
 ## Methods
 

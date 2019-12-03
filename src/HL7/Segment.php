@@ -1,6 +1,6 @@
 <?php
 
-namespace Aranyasen\HL7;
+namespace Axeesante\HL7;
 
 use InvalidArgumentException;
 

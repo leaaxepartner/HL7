@@ -1,11 +1,11 @@
 <?php
 
-namespace Aranyasen\HL7\Messages;
+namespace Axeesante\HL7\Messages;
 
-use Aranyasen\HL7\Message;
-use Aranyasen\HL7\Segment;
-use Aranyasen\HL7\Segments\MSA;
-use Aranyasen\HL7\Segments\MSH;
+use Axeesante\HL7\Message;
+use Axeesante\HL7\Segment;
+use Axeesante\HL7\Segments\MSA;
+use Axeesante\HL7\Segments\MSH;
 
 class ACK extends Message
 {

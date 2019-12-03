@@ -1,8 +1,8 @@
 <?php
 
-namespace Aranyasen\HL7\Segments;
+namespace Axeesante\HL7\Segments;
 
-use Aranyasen\HL7\Segment;
+use Axeesante\HL7\Segment;
 
 /**
  * OBR segment class

@@ -1,8 +1,8 @@
 <?php
 
-namespace Aranyasen\HL7;
+namespace Axeesante\HL7;
 
-use Aranyasen\Exceptions\HL7Exception;
+use Axeesante\Exceptions\HL7Exception;
 use InvalidArgumentException;
 
 /**
@@ -55,10 +55,10 @@ class Message
      *
      * If the message couldn't be created, for example due to a erroneous HL7 message string, an error is raised.
      * @param string $msgStr
-     * @param array $hl7Globals Set control characters or HL7 properties. e.g., ['HL7_VERSION' => '2.5']
-     * @param bool $keepEmptySubFields Set this to true to retain empty sub fields
-     * @param bool $resetIndices Reset Indices of each segment to 1.
-     * @param bool $autoIncrementIndices True: auto-increment for each instance of same segment.
+     * @param array  $hl7Globals           Set control characters or HL7 properties. e.g., ['HL7_VERSION' => '2.5']
+     * @param bool   $keepEmptySubFields   Set this to true to retain empty sub fields
+     * @param bool   $resetIndices         Reset Indices of each segment to 1.
+     * @param bool   $autoIncrementIndices True: auto-increment for each instance of same segment.
      * @throws HL7Exception
      * @throws \ReflectionException
      */
@@ -83,7 +83,7 @@ class Message
 
         // If an HL7 string is given to the constructor, parse it.
         if ($msgStr) {
-            $segments = preg_split("/[\n\r" . $this->segmentSeparator . ']/', $msgStr, -1, PREG_SPLIT_NO_EMPTY);
+            $segments = preg_split("/[\n\r".$this->segmentSeparator.']/', $msgStr, -1, PREG_SPLIT_NO_EMPTY);
 
             // The first segment should be the control segment
             if (!preg_match('/^([A-Z0-9]{3})(.)(.)(.)(.)(.)(.)/', $segments[0], $matches)) {
@@ -98,17 +98,17 @@ class Message
             }
 
             // Set field separator based on control segment
-            $this->fieldSeparator        = $fieldSep;
+            $this->fieldSeparator = $fieldSep;
 
             // Set other separators
-            $this->componentSeparator    = $compSep;
+            $this->componentSeparator = $compSep;
             $this->subcomponentSeparator = $subCompSep;
-            $this->escapeChar            = $esc;
-            $this->repetitionSeparator   = $repSep;
+            $this->escapeChar = $esc;
+            $this->repetitionSeparator = $repSep;
 
             // Do all segments
             foreach ($segments as $i => $iValue) {
-                $fields = preg_split("/\\" . $this->fieldSeparator . '/', $segments[$i]);
+                $fields = preg_split("/\\".$this->fieldSeparator.'/', $segments[$i]);
                 $name = array_shift($fields);
 
                 // Now decompose fields if necessary, into arrays
@@ -118,33 +118,35 @@ class Message
                         continue;
                     }
 
-                    $preg_flags = $keepEmptySubFields ? 0 : PREG_SPLIT_NO_EMPTY;
-                    $comps = preg_split("/\\" . $this->componentSeparator .'/', $fields[$j], -1, $preg_flags);
+                    $repetitions = preg_split("/\\".$this->repetitionSeparator.'/', $fields[$j]);
 
-                    foreach ($comps as $k => $kValue) {
-                        $subComps = preg_split("/\\" . $this->subcomponentSeparator . '/', $comps[$k]);
+                    foreach ($repetitions as $l => $lvalue) {
+                        $preg_flags = $keepEmptySubFields ? 0 : PREG_SPLIT_NO_EMPTY;
+                        $comps = preg_split("/\\".$this->componentSeparator.'/', $repetitions[$l]);
 
-                        // Make it a ref or just the value
-                        (\count($subComps) === 1) ? ($comps[$k] = $subComps[0]) : ($comps[$k] = $subComps);
+                        foreach ($comps as $k => $kValue) {
+                            $subComps = preg_split("/\\".$this->subcomponentSeparator.'/', $comps[$k]);
+
+                            // Make it a ref or just the value
+                            (\count($subComps) === 1) ? ($comps[$k] = $subComps[0]) : ($comps[$k] = $subComps);
+                        }
+                        (\count($comps) === 1) ? ($repetitions[$l] = $comps[0]) : ($repetitions[$l] = $comps);
                     }
-
-                    (\count($comps) === 1) ? ($fields[$j] = $comps[0]) : ($fields[$j] = $comps);
+                    (\count($repetitions) === 1) ? ($fields[$j] = $repetitions[0]) : ($fields[$j] = $repetitions);
                 }
 
                 $seg = null;
 
                 // If a class exists for the segment under segments/, (e.g., MSH)
-                $className = "Aranyasen\\HL7\\Segments\\$name";
+                $className = "Axeesante\\HL7\\Segments\\$name";
                 if (class_exists($className)) {
                     if ($name === 'MSH') {
                         array_unshift($fields, $this->fieldSeparator); # First field for MSH is '|'
                         $seg = new $className($fields);
-                    }
-                    else {
+                    } else {
                         $seg = new $className($fields, $autoIncrementIndices);
                     }
-                }
-                else {
+                } else {
                     $seg = new Segment($name, $fields);
                 }
 
@@ -178,25 +180,23 @@ class Message
     /**
      * Insert a segment.
      *
-     * @param Segment $segment
+     * @param Segment  $segment
      * @param null|int $index Index where segment is inserted
      * @throws \InvalidArgumentException
      */
     public function insertSegment(Segment $segment, $index = null): void
     {
         if ($index > \count($this->segments)) {
-            throw new InvalidArgumentException("Index out of range. Index: $index, Total segments: " .
+            throw new InvalidArgumentException("Index out of range. Index: $index, Total segments: ".
                 \count($this->segments));
         }
 
         if ($index === 0) {
             $this->resetCtrl($segment);
             array_unshift($this->segments, $segment);
-        }
-        elseif ($index === \count($this->segments)) {
+        } elseif ($index === \count($this->segments)) {
             $this->segments[] = $segment;
-        }
-        else {
+        } else {
             $this->segments =
                 array_merge(
                     \array_slice($this->segments, 0, $index),
@@ -234,6 +234,7 @@ class Message
                 return $ii;
             }
         }
+
         return null;
     }
 
@@ -288,6 +289,7 @@ class Message
             $this->removeSegmentByIndex($this->getSegmentIndex($segment));
             $count++;
         }
+
         return $count;
     }
 
@@ -298,7 +300,7 @@ class Message
      * control characters and hl7 version, based on MSH(1), MSH(2) and MSH(12).
      *
      * @param Segment $segment
-     * @param int $index Index where segment is set
+     * @param int     $index Index where segment is set
      * @return boolean
      * @throws \InvalidArgumentException
      */
@@ -331,9 +333,9 @@ class Message
         }
 
         if (preg_match('/(.)(.)(.)(.)/', $segment->getField(2), $matches)) {
-            $this->componentSeparator    = $matches[1];
-            $this->repetitionSeparator   = $matches[2];
-            $this->escapeChar            = $matches[3];
+            $this->componentSeparator = $matches[1];
+            $this->repetitionSeparator = $matches[2];
+            $this->escapeChar = $matches[3];
             $this->subcomponentSeparator = $matches[4];
         }
 
@@ -397,7 +399,7 @@ class Message
     public function segmentToString(Segment $seg): string
     {
         $segmentName = $seg->getName();
-        $segStr = $segmentName . $this->fieldSeparator;
+        $segStr = $segmentName.$this->fieldSeparator;
         $fields = $seg->getFields(($segmentName === 'MSH' ? 2 : 1));
 
         foreach ($fields as $field) {
@@ -430,11 +432,11 @@ class Message
     public function resetSegmentIndices(): void
     {
         $reflector = new \ReflectionClass($this);
-        $segments = glob(dirname($reflector->getFileName()) . '/Segments/*.php');
+        $segments = glob(dirname($reflector->getFileName()).'/Segments/*.php');
 
         // Go through each available segment class and reset its ID
         foreach ($segments as $file) { // ['OBR', 'PID', 'OBX', 'IN1'...]
-            $className = "Aranyasen\\HL7\\Segments\\" . pathinfo($file, PATHINFO_FILENAME);
+            $className = "Axeesante\\HL7\\Segments\\".pathinfo($file, PATHINFO_FILENAME);
             if (class_exists($className) && method_exists($className, 'resetIndex')) {
                 $className::resetIndex();
             }

@@ -1,4 +1,4 @@
-# Aranyasen\HL7\Segments\PV1  
+# Axeesante\HL7\Segments\PV1  
 
 PV1 segment class
 Ref: https://corepointhealth.com/resource-center/hl7-resources/hl7-pv1-patient-visit-information-segment
@@ -7,7 +7,7 @@ Ref: https://corepointhealth.com/resource-center/hl7-resources/hl7-pv1-patient-v
 
 ## Extend:
 
-Aranyasen\HL7\Segment
+Axeesante\HL7\Segment
 
 ## Methods
 

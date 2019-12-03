@@ -1,4 +1,4 @@
-# Aranyasen\HL7\Segments\OBX  
+# Axeesante\HL7\Segments\OBX  
 
 OBX segment class
 Ref: https://corepointhealth.com/resource-center/hl7-resources/hl7-obx-segment
@@ -7,7 +7,7 @@ Ref: https://corepointhealth.com/resource-center/hl7-resources/hl7-obx-segment
 
 ## Extend:
 
-Aranyasen\HL7\Segment
+Axeesante\HL7\Segment
 
 ## Methods
 

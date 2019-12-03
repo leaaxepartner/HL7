@@ -1,4 +1,4 @@
-# Aranyasen\HL7\Segments\EQU  
+# Axeesante\HL7\Segments\EQU  
 
 EQU segment class
 Ref: https://www.interfaceware.com/hl7-standard/hl7-segment-EQU.html
@@ -7,7 +7,7 @@ Ref: https://www.interfaceware.com/hl7-standard/hl7-segment-EQU.html
 
 ## Extend:
 
-Aranyasen\HL7\Segment
+Axeesante\HL7\Segment
 
 ## Methods
 

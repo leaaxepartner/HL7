@@ -1,4 +1,4 @@
-# Aranyasen\HL7\Segments\NTE  
+# Axeesante\HL7\Segments\NTE  
 
 NTE segment class
 Ref: https://corepointhealth.com/resource-center/hl7-resources/hl7-nte-notes-comments
@@ -7,7 +7,7 @@ Ref: https://corepointhealth.com/resource-center/hl7-resources/hl7-nte-notes-com
 
 ## Extend:
 
-Aranyasen\HL7\Segment
+Axeesante\HL7\Segment
 
 ## Methods
 

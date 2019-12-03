@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace Aranyasen\HL7\tests;
+namespace Axeesante\HL7\tests;
 
-use Aranyasen\HL7\Message;
-use Aranyasen\HL7\Connection;
-use Aranyasen\HL7\Segment;
-use Aranyasen\HL7\Segments\MSH;
+use Axeesante\HL7\Message;
+use Axeesante\HL7\Connection;
+use Axeesante\HL7\Segment;
+use Axeesante\HL7\Segments\MSH;
 
 class ConnectionTest extends TestCase
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Aranyasen\HL7\Tests;
+namespace Axeesante\HL7\Tests;
 
 use PHPUnit\Framework\TestCase as TC;
 
