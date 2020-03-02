@@ -411,7 +411,6 @@ class Message
                             $segStr .= $field[$i];
                         }
                     }
-                    
                     if ($i !== max(array_keys($field))) {
                         $segStr .= $this->componentSeparator;
                     }
