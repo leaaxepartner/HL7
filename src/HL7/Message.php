@@ -403,12 +403,16 @@ class Message
 
         foreach ($fields as $field) {
             if (\is_array($field)) {
-                foreach ($field as $i => $iValue) {
-                    \is_array($field[$i])
-                        ? ($segStr .= implode($this->subcomponentSeparator, $field[$i]))
-                        : ($segStr .= $field[$i]);
-
-                    if ($i < (\count($field) - 1)) {
+                for ($i = 0; $i <= max(array_keys($field)); $i++) {
+                    if (isset($field[$i])) {
+                        if (is_array($field[$i])) {
+                            $segStr .= implode($this->subcomponentSeparator, $field[$i]);
+                        } else {
+                            $segStr .= $field[$i];
+                        }
+                    }
+                    
+                    if ($i !== max(array_keys($field))) {
                         $segStr .= $this->componentSeparator;
                     }
                 }
